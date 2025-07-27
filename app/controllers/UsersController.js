@@ -54,7 +54,7 @@ export const ProfileUpdate = async (req, res) => {
   try {
     let reqBody = req.body;
     let user_id = req.headers.user_id;
-    await UsersModel.updateMany({ _id: user_id }, reqBody);
+    await UsersModel.updateOne({ _id: user_id }, reqBody);
     return res.json({
       status: "success",
       message: "Profile updated successfully",
