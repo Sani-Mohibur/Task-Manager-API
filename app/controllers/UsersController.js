@@ -18,19 +18,36 @@ export const Registration = async (req, res) => {
 export const Login = async (req, res) => {
   try {
     let reqBody = req.body;
-    let data = await UsersModel.findOne(reqBody);
+
+    //Check email and pass exist in reqBody
+    if (!reqBody.email || !reqBody.password) {
+      return res
+        .status(400)
+        .json({ status: "failed", message: "Email and password are required" });
+    }
+
+    //Find User
+    let data = await UsersModel.findOne({ email: reqBody.email });
     if (data == null) {
       return res
         .status(404)
         .json({ status: "failed", message: "User not found" });
-    } else {
-      let token = TokenEncode(data["email"], data["id"]);
-      return res.status(200).json({
-        status: "success",
-        message: "User logged in successfully",
-        data: { token: token },
-      });
     }
+
+    //Match password
+    if (data.password !== reqBody.password) {
+      return res
+        .status(401)
+        .json({ status: "failed", message: "Invalid password" });
+    }
+
+    //Generate token
+    let token = TokenEncode(data["email"], data["id"]);
+    return res.status(200).json({
+      status: "success",
+      message: "User logged in successfully",
+      data: { token: token },
+    });
   } catch (err) {
     return res.status(404).json({ status: "failed", message: err.toString() });
   }
