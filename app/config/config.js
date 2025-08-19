@@ -1,16 +1,18 @@
-export const PORT = 5050;
-export const DATABASE =
-  "mongodb+srv://sani:sani1234@devcluster.ui1dxit.mongodb.net/TaskManager?retryWrites=true&w=majority";
+import dotenv from "dotenv";
+dotenv.config();
 
-export const JWT_KEY = "ABCD1234";
+export const PORT = 5050;
+export const DATABASE = process.env.DATABASE;
+
+export const JWT_KEY = process.env.JWT_KEY;
 export const JWT_EXPIRE_TIME = 30 * 24 * 60 * 60;
 
-export const EMAIL_HOST = "smtp.gmail.com";
-export const EMAIL_PORT = 587;
-export const EMAIL_SECURITY = false;
-export const EMAIL_USER = "mdfarabi200@gmail.com";
-export const EMAIL_PASS = "zgfj hcsg wwsr zewe";
-export const EMAIL_UN_AUTH = false;
+export const EMAIL_HOST = process.env.EMAIL_HOST;
+export const EMAIL_PORT = Number(process.env.EMAIL_PORT);
+export const EMAIL_SECURITY = process.env.EMAIL_SECURITY === "true";
+export const EMAIL_USER = "process.env.EMAIL_USER";
+export const EMAIL_PASS = "process.env.EMAIL_PASS";
+export const EMAIL_UN_AUTH = process.env.EMAIL_UN_AUTH === "true";
 
 export const WEB_CACHE = false;
 export const MAX_JSON_SIZE = "10MB";
