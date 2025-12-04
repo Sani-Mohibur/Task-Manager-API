@@ -26,7 +26,7 @@ This repository contains the backend service for a simple task management applic
 
 1.  **Clone the repository:**
     ```sh
-    git clone [https://github.com/Sani-Mohibur/Task-Manager-API.git](https://github.com/Sani-Mohibur/Task-Manager-API.git)
+    git clone https://github.com/Sani-Mohibur/Task-Manager-API.git
     ```
 2.  **Navigate to the project directory:**
     ```sh
